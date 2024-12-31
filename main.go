@@ -622,9 +622,7 @@ func (p *Parser) consumeOperator() (string, error) {
 
 func main() {
 	expression := `
-	V1:=MA(REF(HHV(CLOSE,2),1), 3);
-	V2:=LLV(CLOSE, 2);
-	V3:=V1 + V2;
+	V1:=(1+CLOSE)*2;
 	`
 	data := map[string][]float64{
 		"CLOSE": {10, 12, 15, 14, 16, 18, 20, 19, 22, 25},
