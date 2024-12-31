@@ -9,6 +9,9 @@ import (
 func main() {
 	expression := `
 	V1:=(1+CLOSE)*2;
+	V2:=HHV(CLOSE, 5);
+	V3:=LLV(CLOSE, 5);
+	V4:=MA(V1+V2+V3, 5);
 	`
 	data := map[string][]float64{
 		"CLOSE": {10, 12, 15, 14, 16, 18, 20, 19, 22, 25},

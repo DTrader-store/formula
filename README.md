@@ -15,4 +15,44 @@
   - [x] LLV
   - [x] MA
   - [x] REF
+  - [ ] TODO...
 - [X] 变量
+- [ ] TODO...
+
+## 使用说明
+```go
+
+func main() {
+	expression := `
+	V1:=(1+CLOSE)*2;
+	V2:=HHV(CLOSE, 5);
+	V3:=LLV(CLOSE, 5);
+	V4:=MA(V1+V2+V3, 5);
+	`
+	data := map[string][]float64{
+		"CLOSE": {10, 12, 15, 14, 16, 18, 20, 19, 22, 25},
+	}
+	lexer := formula.NewLexer(expression)
+	tokens, err := lexer.Tokenize()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	parser := formula.NewParser(tokens, data)
+	err = parser.ParseApp()
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println(parser.Result())
+	}
+}
+```
+```shell
+go run main.go
+map[
+  V1:[22 26 32 30 34 38 42 40 46 52]
+  V2:[10 12 15 15 16 18 20 20 22 25]
+  V3:[10 10 10 10 10 12 14 14 16 18]
+  V4:[42 45 49 50.5 52.4 57.6 63.2 66.6 72.4 79.4]
+]
+```
