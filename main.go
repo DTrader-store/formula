@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"codeup.aliyun.com/stocker/StockFormula/formula"
+	"github.com/DTrader-store/formula/formula"
 )
 
 func main() {
